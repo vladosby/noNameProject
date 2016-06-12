@@ -2,7 +2,6 @@ package com.nonameproject.spring.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by vlados on 5/24/2016.

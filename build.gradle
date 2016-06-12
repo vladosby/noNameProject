@@ -1,7 +1,3 @@
-//todo
-group 'noNameProject'
-version '1.0-SNAPSHOT'
-
 buildscript {
     repositories {
         jcenter()
@@ -11,10 +7,19 @@ buildscript {
     }
 }
 
+plugins {
+    id "de.aaschmid.cpd" version "0.5"
+}
+
+//todo
+group 'noNameProject'
+version '1.0-SNAPSHOT'
+
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'groovy'
+apply plugin: 'pmd'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -35,4 +40,70 @@ dependencies {
     //todo
     compile 'commons-logging:commons-logging'
     compile 'org.springframework.data:spring-data-mongodb'
+    compile 'org.codehaus.groovy:groovy'
 }
+
+
+pmd {
+//    ignoreFailures = true
+    consoleOutput = true
+//    sourceSets = [sourceSets.main]
+    reportsDir = file("$project.buildDir/reports/pmd")
+    /*
+        Link to ruleSet
+        https://github.com/pmd/pmd/tree/master/pmd-java/src/main/resources/rulesets/java
+    */
+    ruleSets = [
+            'java-basic',
+            'java-braces',
+            'java-clone',
+            'java-codesize',
+//            'java-comments',
+            //todo
+//            'java-controversial',
+//            'java-coupling',
+            'java-design',
+            'java-empty',
+            'java-finalizers',
+            'java-imports',
+            'java-j2ee',
+            'java-javabeans',
+            'java-logging-java',
+            'java-junit',
+//            'java-naming',
+            //todo
+//            'java-optimizations',
+            'java-sunsecure',
+            'java-strictexception',
+            'java-strings',
+            'java-typeresolution',
+            'java-unnecessary',
+            'java-unusedcode'
+    ]
+}
+
+cpdCheck {
+    skipLexicalErrors = true
+    ignoreAnnotations = true
+    reports {
+        text {
+            enabled = true
+        }
+        xml.enabled = false
+    }
+}
+
+
+task  cpdCheckFailed{
+    onlyIf {
+        cpdCheck.getState().failure
+    }
+
+    doLast {
+        String path = cpdCheck.reports.text.destination.toString()
+        File file = new File(path)
+        println file.text
+    }
+}
+
+cpdCheck.finalizedBy cpdCheckFailed
