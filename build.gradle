@@ -47,7 +47,8 @@ dependencies {
 pmd {
 //    ignoreFailures = true
     consoleOutput = true
-    ruleSetFiles = rootProject.files('src/main/resources/com/noname/code/analyse/config/pmd.xml')
+//    ruleSetFiles = rootProject.files('src/main/resources/com/noname/code/analyse/config/pmd.xml')
+    ruleSetFiles = rootProject.files('src/main/resources/com.noname.code.analyse.config/pmd.xml')
 //    sourceSets = [sourceSets.main]
     reportsDir = file("$project.buildDir/reports/pmd")
     /*
@@ -86,6 +87,8 @@ pmd {
 cpdCheck {
     skipLexicalErrors = true
     ignoreAnnotations = true
+    minimumTokenCount = 20
+
     reports {
         text {
             enabled = true
