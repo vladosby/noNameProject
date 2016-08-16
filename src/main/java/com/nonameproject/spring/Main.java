@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
  * Created by vlados on 5/24/2016.
  */
 
-@SuppressWarnings({"PMD.UseUtilityClass", "PMD.UseVarargs", "PMD.SystemPrintln"})
+@SuppressWarnings({"PMD.UseUtilityClass", "PMD.UseVarargs", "PMD.SystemPrintln", "PMD.LawOfDemeter"})
 public class Main {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(JavaConfig.class);
