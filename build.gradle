@@ -55,6 +55,7 @@ pmd {
         Link to ruleSet
         https://github.com/pmd/pmd/tree/master/pmd-java/src/main/resources/rulesets/java
     */
+    toolVersion = '5.5.1'
 }
 
 cpdCheck {
@@ -89,4 +90,5 @@ checkstyle {
 //    configFile = rootProject.files('src/main/resources/com/noname/code/analyse/configs/checkstyle.xml')
     configFile =  rootProject.file('src/main/resources/com/noname/code/analyse/configs/checkstyle.xml')
     reportsDir = file("$project.buildDir/reports/checkstyle")
+    toolVersion = '7.1'
 }
