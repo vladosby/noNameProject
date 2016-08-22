@@ -21,6 +21,7 @@ apply plugin: 'idea'
 apply plugin: 'groovy'
 apply plugin: 'pmd'
 apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -91,4 +92,10 @@ checkstyle {
     configFile =  rootProject.file('src/main/resources/com/noname/code/analyse/configs/checkstyle.xml')
     reportsDir = file("$project.buildDir/reports/checkstyle")
     toolVersion = '7.1'
+}
+
+findbugs {
+    toolVersion = '3.0.1'
+    reportsDir = file("$project.buildDir/reports/findbugs")
+    effort = "max"
 }
